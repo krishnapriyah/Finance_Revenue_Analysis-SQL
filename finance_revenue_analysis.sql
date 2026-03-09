@@ -146,10 +146,10 @@ ORDER BY year;
 
 
 --Query 3 : Top 5 Countries = Which countries are most profitable?
-SELECT TOP(5) country,ROUND(SUM(profit),2) as total_profit
+SELECT TOP(5) country,ROUND(SUM(profit),2) AS total_profit
 FROM financial_data
 GROUP BY country
-ORDER BY total_profit;
+ORDER BY total_profit DESC;
 
 
 --Query 4 : Segment Analysis = Which business segment leads in revenue?
@@ -174,7 +174,7 @@ ORDER BY total_profit DESC;
 
 
 --Query 6 :	Monthly Trends =	Which months are peak revenue months?
---This is a Monthly Trend query — means we want to see how revenue flows month by month,like timeline(so orderby year,monthname not orderby revenue)
+--This is a Monthly Trend query Â— means we want to see how revenue flows month by month,like timeline(so orderby year,monthname not orderby revenue)
 SELECT year,month_number,month_name,
        ROUND(SUM(revenue),2) AS monthly_revenue,
        ROUND(SUM(profit),2) AS monthly_profit
@@ -211,7 +211,7 @@ ORDER BY profit_margin_pct DESC;
 SELECT year,
        ROUND(SUM(revenue),2) AS This_year_revenue,
        ROUND(LAG(SUM(revenue)) OVER (ORDER BY year), 2) AS Last_year_revenue,
---YoY Growth% = (This Year - Last Year) ÷ Last Year × 100
+--YoY Growth% = (This Year - Last Year) Ã· Last Year Ã— 100
           ROUND((SUM(revenue)-LAG(SUM(revenue))OVER(ORDER BY year))/LAG(SUM(revenue))OVER(ORDER BY year) *100,2) AS YoY_Growth
 --example ROUND((     12M    -                            10M     )/           10M                       *100,2)
 FROM  financial_data
@@ -227,4 +227,5 @@ FROM financial_data
 GROUP BY product,segment,country
 HAVING SUM(profit) < 0
 ORDER BY total_profit ASC;
+
 

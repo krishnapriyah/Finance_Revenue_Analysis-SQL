@@ -29,7 +29,7 @@ finance-revenue-analysis-sql/
 ├── sql/
 │   └── finance_revenue_analysis.sql   ← All queries here
 └── visuals/
-    └── (screenshots of query results)
+    └── screenshots of query results in document
 ```
 
 ---
